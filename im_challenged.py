@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 dataframe = pd.read_csv('challenge_dataset.txt')
 x_values = dataframe[[0]]
 y_values = dataframe[[1]]
-test_val = (dataframe[[0]].iloc[0], dataframe[[1]].iloc[0])
+test_val = (dataframe.iloc[0][0], dataframe.iloc[0][1])
 
-#print(test_val)
+print(test_val)
 
 print("Fitting...")
 
@@ -18,12 +18,14 @@ body_reg.fit(x_values, y_values)
 
 print("Done!")
 
-print("Sample: %i, %f" % (test_val, body_reg.predict(test_val)))
+predict_val = body_reg.predict(test_val[0])
+
+print("Sample: %f, %f" % (test_val[0], test_val[1]))
+print("Predict: %f, %f" % (test_val[0], predict_val))
+print("Error: %i%%" % ((test_val[1] - predict_val) / test_val[1] * 100))
 
 # visualize results
-'''
 plt.scatter(x_values, y_values)
 plt.plot(x_values, body_reg.predict(x_values))
-plt.scatter(test_val, body_reg.predict(test_val))
+plt.scatter(test_val[0], predict_val)
 plt.show()
-'''
