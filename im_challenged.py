@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 dataframe = pd.read_csv('challenge_dataset.txt')
 x_values = dataframe[[0]]
 y_values = dataframe[[1]]
-test_val = (dataframe.iloc[0][0], dataframe.iloc[0][1])
+test_val = (dataframe.iloc[20][0], dataframe.iloc[20][1])
 
 print(test_val)
 
@@ -27,5 +27,6 @@ print("Error: %i%%" % ((test_val[1] - predict_val) / test_val[1] * 100))
 # visualize results
 plt.scatter(x_values, y_values)
 plt.plot(x_values, body_reg.predict(x_values))
-plt.scatter(test_val[0], predict_val)
+plt.scatter(test_val[0], predict_val, color='red', marker='o')
+plt.scatter(test_val[0], test_val[1], color='red', marker='+')
 plt.show()
